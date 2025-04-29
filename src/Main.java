@@ -1,21 +1,41 @@
-public class Employee {
-    private final int id;
-    private final String fullName;
-    private double salary;
-    private int department;
+public class EmployeeBook {
+    private final Employee[] employees;
 
-    public Employee(int id, String fullName, double salary, int department) {
-        this.id = id;
-        this.fullName = fullName;
-        this.salary = salary;
-        this.department = department;
+    public EmployeeBook(int capacity) {
+        employees = new Employee[capacity];
     }
 
-    // Геттеры и сеттеры
-    public int getId() { return id; }
-    public String getFullName() { return fullName; }
-    public double getSalary() { return salary; }
-    public void setSalary(double salary) { this.salary = salary; }
-    public int getDepartment() { return department; }
-    public void setDepartment(int department) { this.department = department; }
+    // Добавлены проверки на уникальность ID
+    public boolean addEmployee(Employee employee) {
+        if (employee == null || getEmployee(employee.getId()) != null) return false;
+
+        for (int i = 0; i < employees.length; i++) {
+            if (employees[i] == null) {
+                employees[i] = employee;
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // Удаление с проверкой существования сотрудника
+    public boolean removeEmployee(int id) {
+        for (int i = 0; i < employees.length; i++) {
+            if (employees[i] != null && employees[i].getId() == id) {
+                employees[i] = null;
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // Получение сотрудника с обработкой null
+    public Employee getEmployee(int id) {
+        for (Employee e : employees) {
+            if (e != null && e.getId() == id) {
+                return e;
+            }
+        }
+        return null;
+    }
 }
