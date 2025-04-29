@@ -1,21 +1,13 @@
-public class Employee {
-    private final int id;
-    private final String fullName;
-    private double salary;
-    private int department;
-
-    public Employee(int id, String fullName, double salary, int department) {
-        this.id = id;
-        this.fullName = fullName;
-        this.salary = salary;
-        this.department = department;
+public Employee findMinSalaryEmployee() {
+    Employee minEmployee = null;
+    double minSalary = Double.MAX_VALUE;
+    for (Employee e : employees) {
+        if (e != null) {
+            if (e.getSalary() < minSalary) {
+                minSalary = e.getSalary();
+                minEmployee = e;
+            }
+        }
     }
-
-    // Геттеры и сеттеры
-    public int getId() { return id; }
-    public String getFullName() { return fullName; }
-    public double getSalary() { return salary; }
-    public void setSalary(double salary) { this.salary = salary; }
-    public int getDepartment() { return department; }
-    public void setDepartment(int department) { this.department = department; }
+    return minEmployee;
 }
