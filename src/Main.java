@@ -13,7 +13,7 @@ public class Employee {
 
     // Геттеры и сеттеры
     public int getId() { return id; }
-    public String getFullName() { return fullName; }
+    public  String getFullName() { return fullName; }
     public double getSalary() { return salary; }
     public void setSalary(double salary) { this.salary = salary; }
     public int getDepartment() { return department; }
